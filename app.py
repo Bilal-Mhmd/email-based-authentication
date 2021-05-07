@@ -1,6 +1,5 @@
 from flask import Flask , request, url_for, render_template
 from flask_mail import Mail, Message
-from flask_bootstrap import Bootstrap
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 
 app = Flask(__name__)
@@ -16,7 +15,7 @@ s = URLSafeTimedSerializer('Thisissecret!')
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
-        return render_template('home.html')
+        return render_template('index.html')
     email = request.form['email']
     token = s.dumps(email, salt='email-confirm')
     
@@ -64,7 +63,6 @@ if __name__ == '__main__':
 
 
 
-
  
 
 
@@ -92,6 +90,5 @@ if __name__ == '__main__':
 # app.config['MAIL_USE_SSL']
 # app.config['MAIL_DEBUG']
 # app.config['MAIL_USERNAME']
-# app.config['']
-# app.config['']
+
 
