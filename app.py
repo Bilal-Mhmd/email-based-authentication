@@ -1,15 +1,16 @@
 from flask import Flask , request, url_for, render_template
 from flask_mail import Mail, Message
+
+# itsdangerous is a library that allow you to serialize a string using a secret key
 from itsdangerous import URLSafeTimedSerializer, SignatureExpired
 
 app = Flask(__name__)
-Bootstrap(app)
 
 app.config.from_pyfile('config.cfg')
 
 #mail = Mail(app)
 
-s = URLSafeTimedSerializer('Thisissecret!')
+s = URLSafeTimedSerializer('123AkramSecretKey!')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -42,8 +43,8 @@ def confirm_email(token):
     try:
         email = s.loads(token, salt='email-confirm', max_age=20)
     except SignatureExpired:
-        return '<h1>The token is expired!</h1>'
-    return '<h1>The token works!</h1>'
+        return '<h1 style=" text-shadow: 0 0 3px #FF0000; text-align:center; margin-top: 200px;">The token is expired!</h1>'
+    return '<h1 style=" color: white; text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue; text-align:center; margin-top: 200px;">The token works!</h1>'
 
 if __name__ == '__main__':
     app.run(debug=True)
