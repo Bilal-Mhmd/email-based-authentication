@@ -1,3 +1,4 @@
+
 from flask import Flask , request, url_for, render_template
 from flask_mail import Mail, Message
 
@@ -10,7 +11,7 @@ app.config.from_pyfile('config.cfg')
 
 #mail = Mail(app)
 
-s = URLSafeTimedSerializer('123AkramSecretKey!')
+s = URLSafeTimedSerializer('BilalSecretKey!')
 
 
 @app.route('/', methods=['GET', 'POST'])
